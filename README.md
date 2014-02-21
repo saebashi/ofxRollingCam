@@ -3,4 +3,4 @@
 The very simple sample has been attached.
 
 http://imgur.com/YVdbYrP
-![‚ª‚¼[](http://i.imgur.com/YVdbYrP.gif "‚ª‚¼[")
+![gazo](http://i.imgur.com/YVdbYrP.gif "gazo")
