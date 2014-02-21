@@ -1,0 +1,1 @@
+"ofxRollingCam" helps your camera angle which uses easing.
