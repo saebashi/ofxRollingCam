@@ -2,5 +2,5 @@
 
 The very simple sample has been attached.
 
-
-![gazo](http://i.imgur.com/EUDom56.gif "gazo")
+//http://i.imgur.com/uRAFZcV.gif
+![gazo](http://i.imgur.com/eDe9Hj0.gif "gazo")

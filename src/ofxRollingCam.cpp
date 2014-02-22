@@ -10,14 +10,17 @@
 
 ofxRollingCam::ofxRollingCam(){
     cam.disableMouseInput();
+    distN=ofGetHeight();
+    distT=distN;
     cam.setDistance(ofGetHeight());
     camSpeed=DEFAULT_CAM_SP;
     
 }
 //--------------------------------------------------------------
-void ofxRollingCam::setup(float _distance,float _camSpeed){
+void ofxRollingCam::setup(float _camSpeed,float _distance){
     cam.disableMouseInput();
-    cam.setDistance(_distance);
+    distN=_distance;
+    distT=distN;
     camSpeed=ofClamp(_camSpeed,0,1);
 }
 
@@ -26,6 +29,11 @@ void ofxRollingCam::update(){
     posS.set(posT.x-posN.x,posT.y-posN.y,posT.z-posN.z);
     posS.set(posS.x*camSpeed,posS.y*camSpeed,posS.z*camSpeed);
     posN.set(posN.x+posS.x, posN.y+posS.y,posN.z+posS.z);
+    
+    distS=distT-distN;
+    distS=distS*camSpeed;
+    distN=distN+distS;
+    cam.setDistance(distN);
 }
 //--------------------------------------------------------------
 
@@ -50,7 +58,7 @@ void ofxRollingCam::setCamSpeed(float _camSpeed){
 }
 //--------------------------------------------------------------
 
-void ofxRollingCam::setRandom(float _randomAngle){
+void ofxRollingCam::setRandomPos(float _randomAngle){
     ofVec3f ram3f;
     int ramSize=_randomAngle;
     ram3f.set(ofRandom(-ramSize, ramSize),ofRandom(-ramSize, ramSize),ofRandom(-ramSize, ramSize));
@@ -60,8 +68,16 @@ void ofxRollingCam::setRandom(float _randomAngle){
 
 void ofxRollingCam::setPos(float _x,float _y,float _z){
     posT.set(_x,_y,_z);
-    
+}
+//--------------------------------------------------------------
 
+void ofxRollingCam::setRandomDist(float _min,float _max){
+    distT=ofRandom(_min,_max);
+}
+//--------------------------------------------------------------
+
+void ofxRollingCam::setDistance(float _dist){
+    distT=_dist;
 }
 
 //--------------------------------------------------------------

@@ -16,13 +16,15 @@
 class ofxRollingCam : public ofBaseApp{
 public:
     ofxRollingCam();
-    void setup(float _distance=ofGetHeight(),float _camSpeed=DEFAULT_CAM_SP);
+    void setup(float _camSpeed=DEFAULT_CAM_SP,float _distance=ofGetHeight());
     void update();
     void begin();
     void end();
     void setCamSpeed(float _camSpeed);
-    void setRandom(float _randomAngle=180);
+    void setRandomPos(float _randomAngle=180);
     void setPos(float _x,float _y,float _z);
+    void setRandomDist(float _min,float _max);
+    void setDistance(float _dist);
 
 
     ofEasyCam cam;
@@ -30,5 +32,6 @@ public:
     ofVec3f posN,posT,posS;
     ofLight lig;
     float camSpeed;
+    float distN,distT,distS;
 };
 #endif

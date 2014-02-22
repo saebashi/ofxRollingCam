@@ -19,5 +19,7 @@ public:
     void gotMessage(ofMessage msg);
     ofxRollingCam rollCam;
     ofLight lig;
+    vector <ofVec3f> pos;
+    bool hide;
     
 };
