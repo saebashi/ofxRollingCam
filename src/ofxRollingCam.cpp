@@ -9,18 +9,18 @@
 //--------------------------------------------------------------
 
 ofxRollingCam::ofxRollingCam(){
-    cam.disableMouseInput();
-    distN=ofGetHeight();
-    distT=distN;
-    cam.setDistance(ofGetHeight());
+//    cam.disableMouseInput();
+    scaleN=1.0;
+    scaleT=scaleN;
+//    cam.setscaleance(ofGetHeight());
     camSpeed=DEFAULT_CAM_SP;
     
 }
 //--------------------------------------------------------------
-void ofxRollingCam::setup(float _camSpeed,float _distance){
-    cam.disableMouseInput();
-    distN=_distance;
-    distT=distN;
+void ofxRollingCam::setup(float _camSpeed,float _scaleance){
+//    cam.disableMouseInput();
+    scaleN=_scaleance;
+    scaleT=scaleN;
     camSpeed=ofClamp(_camSpeed,0,1);
 }
 
@@ -30,24 +30,26 @@ void ofxRollingCam::update(){
     posS.set(posS.x*camSpeed,posS.y*camSpeed,posS.z*camSpeed);
     posN.set(posN.x+posS.x, posN.y+posS.y,posN.z+posS.z);
     
-    distS=distT-distN;
-    distS=distS*camSpeed;
-    distN=distN+distS;
-    cam.setDistance(distN);
+    scaleS=scaleT-scaleN;
+    scaleS=scaleS*camSpeed;
+    scaleN=scaleN+scaleS;
+//    cam.setscaleance(scaleN);
 }
 //--------------------------------------------------------------
 
 void ofxRollingCam::begin(){
     ofPushMatrix();
-    cam.begin();
+//    cam.begin();
+    ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
     ofRotateX(posN.x);
     ofRotateY(posN.y);
     ofRotateZ(posN.z);
+    ofScale(scaleN, scaleN,scaleN);
 }
 //--------------------------------------------------------------
 
 void ofxRollingCam::end(){
-    cam.end();
+//    cam.end();
     ofPopMatrix();
     
 }
@@ -71,13 +73,13 @@ void ofxRollingCam::setPos(float _x,float _y,float _z){
 }
 //--------------------------------------------------------------
 
-void ofxRollingCam::setRandomDist(float _min,float _max){
-    distT=ofRandom(_min,_max);
+void ofxRollingCam::setRandomScale(float _min,float _max){
+    scaleT=ofRandom(_min,_max);
 }
 //--------------------------------------------------------------
 
-void ofxRollingCam::setDistance(float _dist){
-    distT=_dist;
+void ofxRollingCam::setScale(float _scale){
+    scaleT=_scale;
 }
 
 //--------------------------------------------------------------

@@ -25,9 +25,10 @@ void testApp::draw(){
     ofPushMatrix();
     ofTranslate(ofGetWidth()/2, ofGetWidth()/2);
     ofEnableLighting();
-    lig.setPosition(0, ofGetHeight()/2, ofGetHeight()/3);
+    lig.setPosition(0, -ofGetHeight()/2, ofGetHeight()/3);
     lig.draw();
     lig.enable();
+    ofPopMatrix();
     
     rollCam.begin(); //rollCam begin
     ofEnableDepthTest();
@@ -61,6 +62,7 @@ void testApp::draw(){
     info += "PressKey '5' : set camera distance by window height.\n";
     info += "PressKey 'f' : toggle fullscreen.\n";
     info += "PressKey 'd' : hide explanation.\n";
+    info += "Now Angle    : "+ofToString(rollCam.posN)+"\n";
     ofDrawBitmapString(info, 10,10);
     }
     
@@ -69,7 +71,7 @@ void testApp::draw(){
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
     if (key=='1') {//All Random.
-        rollCam.setRandomDist(ofGetHeight()/2, ofGetHeight()*1.5);
+        rollCam.setRandomScale(0.5, 1.5);
         rollCam.setRandomPos(270);
     }
     if (key=='2') {//Random rotate.
@@ -79,10 +81,10 @@ void testApp::keyPressed(int key){
         rollCam.setPos(0, 0, 0);
     }
     if (key=='4') {//Random distance.
-        rollCam.setRandomDist(ofGetHeight()/2, ofGetHeight()*1.5);
+        rollCam.setRandomScale(0.5, 1.5);
     }
     if (key=='5') {//Inputting optional distance.
-        rollCam.setDistance(ofGetHeight());
+        rollCam.setScale(1);
     }
 
     if (key=='f') {
